@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Light Switch", "Light Switch\Light Switch.csproj", "{7F6E4B08-46B9-4853-86BD-A4884719E5BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F6E4B08-46B9-4853-86BD-A4884719E5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6E4B08-46B9-4853-86BD-A4884719E5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6E4B08-46B9-4853-86BD-A4884719E5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6E4B08-46B9-4853-86BD-A4884719E5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F5D30A2-48F4-4CE9-B030-442A0D1E8AB2}
+	EndGlobalSection
+EndGlobal
