@@ -1,5 +1,7 @@
 ﻿# Light Switch
 
+![Icon](Readme/Icon.png)
+
 ## Description
 
 A tray icon which you can click to switch between light and dark mode in Windows 10.
