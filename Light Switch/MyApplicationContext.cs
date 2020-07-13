@@ -12,7 +12,7 @@ namespace LightSwitch
 		{
 			Application.ApplicationExit += OnApplicationExit;
 
-			var exitItem = new ToolStripMenuItem("&Exit", null, OnExitItemClick);
+			var exitItem = new ToolStripMenuItem("Exit", null, OnExitItemClick);
 
 			var contextMenuStrip = new ContextMenuStrip();
 			contextMenuStrip.Items.Add(exitItem);
