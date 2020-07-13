@@ -12,7 +12,7 @@ Go to the [Releases](https://github.com/wireless-r/Light-Switch/releases) page t
 
 Click the tray icon once to switch from light to dark, or from dark to light.
 
-![Screenshot](Readme/Screenshot.jpg)
+![Screenshot](Readme/Screen.gif)
 
 ## Credits
 
