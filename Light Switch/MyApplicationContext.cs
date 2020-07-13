@@ -30,7 +30,6 @@ namespace LightSwitch
 
 		private void OnExitItemClick(object sender, EventArgs e)
 		{
-			_notifyIcon.Visible = false;
 			Application.Exit();
 		}
 
