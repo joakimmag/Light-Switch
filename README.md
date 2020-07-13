@@ -4,7 +4,7 @@
 
 ## Description
 
-A tray icon which you can click to switch between light and dark mode in Windows 10.
+Easy switch for light and dark mode in Windows 10.
 
 ## Download
 
