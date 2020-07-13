@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Light_Switch {
+namespace LightSwitch {
     using System;
     
     
