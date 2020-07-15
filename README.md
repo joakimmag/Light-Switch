@@ -4,7 +4,7 @@
 
 ## Description
 
-Easy switch for light and dark mode in Windows 10.
+Easily switch between light and dark mode in Windows 10.
 
 ## Download
 
