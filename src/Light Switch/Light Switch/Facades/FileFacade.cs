@@ -6,7 +6,12 @@ namespace LightSwitch.Facades
 {
 	class FileFacade
 	{
-		private string _tempDir = Path.GetTempPath() + "LightSwitch\\";
+		private readonly string _tempDir = Path.GetTempPath() + "LightSwitch\\";
+
+		private string GetPathToFolder(string folder)
+		{
+			return Path.Combine(_tempDir, folder);
+		}
 
 		private string GetTempFilename()
 		{
@@ -20,19 +25,19 @@ namespace LightSwitch.Facades
 		/// Makes a copy to system temporary directory with a generated filename.
 		/// </summary>
 		/// <returns>Returns full file path.</returns>
-		public string SaveToTemp(string subfolder, string filename)
+		public string SaveToTemp(string folder, string sourcePath)
 		{
-			if (!File.Exists(filename))
+			if (!File.Exists(sourcePath))
 			{
-				return filename;
+				return sourcePath;
 			}
 
-			var sourceFile = new FileInfo(filename);
-			var destDir = new DirectoryInfo(Path.Combine(_tempDir, subfolder));
+			var sourceFile = new FileInfo(sourcePath);
+			var destDir = new DirectoryInfo(GetPathToFolder(folder));
 
 			if (sourceFile.DirectoryName == destDir.FullName)
 			{
-				return filename;
+				return sourcePath;
 			}
 
 			if (!destDir.Exists)
@@ -40,19 +45,26 @@ namespace LightSwitch.Facades
 				destDir.Create();
 			}
 
-			var dest = Path.Combine(destDir.FullName, GetTempFilename() + sourceFile.Extension);
+			var destPath = Path.Combine(destDir.FullName, GetTempFilename() + sourceFile.Extension);
 
-			File.Copy(filename, dest, true);
+			File.Copy(sourcePath, destPath, true);
 
-			return dest;
+			return destPath;
 		}
 
 		/// <summary>
 		/// Deletes all files in temporary directory except for the exceptions specified.
 		/// </summary>
-		public void ClearTemp(string subfolder, params string[] exceptions)
+		public void ClearTemp(string folder, params string[] exceptions)
 		{
-			foreach (var file in new DirectoryInfo(_tempDir + subfolder).GetFiles())
+			var dir = new DirectoryInfo(GetPathToFolder(folder));
+
+			if (!dir.Exists)
+			{
+				return;
+			}
+
+			foreach (var file in dir.GetFiles())
 			{
 				if (!exceptions.Contains(file.FullName))
 				{
