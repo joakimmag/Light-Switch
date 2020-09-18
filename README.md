@@ -25,9 +25,3 @@ Right click the icon to open the menu.
 ## Support and feedback
 
 If you encounter issues or want to send feedback, please use issue tracker or write an e-mail to wireless-r@outlook.com.
-
-## Update log
-
-2020-09-18. Version 2.0. Introduced options to enable or disable system theme, app theme and wallpaper.
-
-2020-07-12. Version 1.0. 
