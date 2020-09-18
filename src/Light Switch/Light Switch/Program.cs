@@ -11,7 +11,7 @@ namespace LightSwitch
 		[STAThread]
 		static void Main()
 		{
-			Application.Run(new MyApplicationContext());
+			Application.Run(new AppContext());
 		}
 	}
 }
