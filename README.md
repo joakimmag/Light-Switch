@@ -24,4 +24,4 @@ Right click the icon to open the menu.
 
 ## Support and feedback
 
-If you encounter issues or want to send feedback, please use issue tracker or write an e-mail to wireless-r@outlook.com.
+To get support or send feedback, please use the issue tracker.
