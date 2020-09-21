@@ -6,7 +6,7 @@ namespace LightSwitch.Facades
 {
 	class FileFacade
 	{
-		private readonly string _temp = Path.GetTempPath() + "LightSwitch\\";
+		private readonly string _temp = Path.Combine(Path.GetTempPath(), "LightSwitch");
 
 		/// <summary>
 		/// Gets full path to directory.
