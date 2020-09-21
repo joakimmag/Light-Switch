@@ -5,20 +5,17 @@ namespace LightSwitch.Facades
 {
 	class PreferencesFacade
 	{
-		public Preferences GetPreferences()
+		public Preferences GetPreferences() => new Preferences
 		{
-			return new Preferences
-			{
-				AppThemeIsEnabled = Settings.Default.AppThemeIsEnabled,
-				CurrentTheme = Settings.Default.CurrentTheme,
-				DarkColor = Settings.Default.DarkColor,
-				DarkWallpaper = Settings.Default.DarkWallpaper,
-				LightColor = Settings.Default.LightColor,
-				LightWallpaper = Settings.Default.LightWallpaper,
-				SystemThemeIsEnabled = Settings.Default.SystemThemeIsEnabled,
-				WallpaperIsEnabled = Settings.Default.WallpaperIsEnabled,
-			};
-		}
+			AppThemeIsEnabled = Settings.Default.AppThemeIsEnabled,
+			CurrentTheme = Settings.Default.CurrentTheme,
+			DarkColor = Settings.Default.DarkColor,
+			DarkWallpaper = Settings.Default.DarkWallpaper,
+			LightColor = Settings.Default.LightColor,
+			LightWallpaper = Settings.Default.LightWallpaper,
+			SystemThemeIsEnabled = Settings.Default.SystemThemeIsEnabled,
+			WallpaperIsEnabled = Settings.Default.WallpaperIsEnabled,
+		};
 
 		public void SavePreferences(Preferences preferences)
 		{
@@ -30,9 +27,10 @@ namespace LightSwitch.Facades
 			Settings.Default.LightWallpaper = preferences.LightWallpaper;
 			Settings.Default.SystemThemeIsEnabled = preferences.SystemThemeIsEnabled;
 			Settings.Default.WallpaperIsEnabled = preferences.WallpaperIsEnabled;
-
 			Settings.Default.Save();
 		}
+
+		public string GetCurrentTheme() => Settings.Default.CurrentTheme;
 
 		public void SaveCurrentTheme(string theme)
 		{

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace LightSwitch.Facades
 {
@@ -9,11 +10,14 @@ namespace LightSwitch.Facades
 		private readonly PreferencesFacade _preferencesFacade = new PreferencesFacade();
 		private readonly WallpaperFacade _wallpaperFacade = new WallpaperFacade();
 
-		public void Toggle()
-		{
-			var preferences = _preferencesFacade.GetPreferences();
+		public NotifyIcon NotifyIcon { get; set; }
 
-			if (preferences.CurrentTheme == "Light")
+		/// <summary>
+		/// Switches to the other theme.
+		/// </summary>
+		public void Switch()
+		{
+			if (_preferencesFacade.GetCurrentTheme() == "Light")
 			{
 				SetDark();
 			}
@@ -23,11 +27,12 @@ namespace LightSwitch.Facades
 			}
 		}
 
-		public void Update()
+		/// <summary>
+		/// Reloads the current theme.
+		/// </summary>
+		public void Reload()
 		{
-			var preferences = _preferencesFacade.GetPreferences();
-
-			if (preferences.CurrentTheme == "Light")
+			if (_preferencesFacade.GetCurrentTheme() == "Light")
 			{
 				SetLight();
 			}
@@ -39,6 +44,8 @@ namespace LightSwitch.Facades
 
 		private void SetLight()
 		{
+			if (NotifyIcon != null) NotifyIcon.Icon = Resources.Icon_Flipped;
+
 			var preferences = _preferencesFacade.GetPreferences();
 
 			if (preferences.AppThemeIsEnabled) SetAppTheme(true);
@@ -60,6 +67,8 @@ namespace LightSwitch.Facades
 
 		private void SetDark()
 		{
+			if (NotifyIcon != null) NotifyIcon.Icon = Resources.Icon;
+
 			var preferences = _preferencesFacade.GetPreferences();
 
 			if (preferences.AppThemeIsEnabled) SetAppTheme(false);

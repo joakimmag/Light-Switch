@@ -16,9 +16,9 @@ namespace LightSwitch.Facades
         [DllImport("user32.dll")]
         public static extern bool SetSysColors(int cElements, int[] lpaElements, int[] lpaRgbValues);
 
-        public void SetImage(string filename)
+        public void SetImage(string path)
         {
-            SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, filename, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+            SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, path, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
         }
 
         public void SetColor(Color color)

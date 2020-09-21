@@ -4,12 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <StartupObject></StartupObject>
+    <StartupObject>LightSwitch.Program</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <NoWin32Manifest>true</NoWin32Manifest>
     <RootNamespace>LightSwitch</RootNamespace>
     <AssemblyName>Light Switch</AssemblyName>
-    <Version>2.0.0</Version>
+    <Version>2.1</Version>
     <Product>Light Switch</Product>
     <Authors>Light Switch</Authors>
     <PackageId>LightSwitch</PackageId>
