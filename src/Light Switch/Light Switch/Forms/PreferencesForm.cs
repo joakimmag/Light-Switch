@@ -159,18 +159,18 @@ namespace LightSwitch.Forms
 		{
 			if (!string.IsNullOrEmpty(Preferences.LightWallpaper))
 			{
-				Preferences.LightWallpaper = _fileFacade.SaveToTemp("Wallpapers", Preferences.LightWallpaper);
+				Preferences.LightWallpaper = _fileFacade.CopyToStorage("Wallpapers", Preferences.LightWallpaper);
 			}
 
 			if (!string.IsNullOrEmpty(Preferences.DarkWallpaper))
 			{
-				Preferences.DarkWallpaper = _fileFacade.SaveToTemp("Wallpapers", Preferences.DarkWallpaper);
+				Preferences.DarkWallpaper = _fileFacade.CopyToStorage("Wallpapers", Preferences.DarkWallpaper);
 			}
 
 			pbxLight.Dispose();
 			pbxDark.Dispose();
 
-			_fileFacade.ClearTemp("Wallpapers", Preferences.LightWallpaper, Preferences.DarkWallpaper);
+			_fileFacade.ClearStorage("Wallpapers", Preferences.LightWallpaper, Preferences.DarkWallpaper);
 			_preferencesFacade.SavePreferences(Preferences);
 			DialogResult = DialogResult.OK;
 			Close();

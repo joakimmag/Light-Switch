@@ -6,14 +6,20 @@ namespace LightSwitch.Facades
 {
 	class FileFacade
 	{
-		private readonly string _tempDir = Path.GetTempPath() + "LightSwitch\\";
+		private readonly string _temp = Path.GetTempPath() + "LightSwitch\\";
 
-		private string GetPathToFolder(string folder)
+		/// <summary>
+		/// Gets full path to directory.
+		/// </summary>
+		private string GetPath(string directory)
 		{
-			return Path.Combine(_tempDir, folder);
+			return Path.Combine(_temp, directory);
 		}
 
-		private string GetTempFilename()
+		/// <summary>
+		/// Generates a file name for use in application storage.
+		/// </summary>
+		private string GetFilename()
 		{
 			var dt = new DateTime(2020, 01, 01);
 			var now = DateTime.UtcNow;
@@ -22,49 +28,50 @@ namespace LightSwitch.Facades
 		}
 
 		/// <summary>
-		/// Makes a copy to system temporary directory with a generated filename.
+		/// Copies the file to application storage.
 		/// </summary>
-		/// <returns>Returns full file path.</returns>
-		public string SaveToTemp(string folder, string sourcePath)
+		/// <returns>Returns path to file in application storage. Returns source path if the source path does not exist.</returns>
+		public string CopyToStorage(string storageDirectory, string sourcePath)
 		{
-			if (!File.Exists(sourcePath))
+			var sourceFileInfo = new FileInfo(sourcePath);
+
+			if (!sourceFileInfo.Exists)
 			{
 				return sourcePath;
 			}
 
-			var sourceFile = new FileInfo(sourcePath);
-			var destDir = new DirectoryInfo(GetPathToFolder(folder));
+			var storageDirInfo = new DirectoryInfo(GetPath(storageDirectory));
 
-			if (sourceFile.DirectoryName == destDir.FullName)
+			if (sourceFileInfo.DirectoryName == storageDirInfo.FullName)
 			{
 				return sourcePath;
 			}
 
-			if (!destDir.Exists)
+			if (!storageDirInfo.Exists)
 			{
-				destDir.Create();
+				storageDirInfo.Create();
 			}
 
-			var destPath = Path.Combine(destDir.FullName, GetTempFilename() + sourceFile.Extension);
+			var destinationPath = Path.Combine(storageDirInfo.FullName, GetFilename() + sourceFileInfo.Extension);
 
-			File.Copy(sourcePath, destPath, true);
+			sourceFileInfo.CopyTo(destinationPath, true);
 
-			return destPath;
+			return destinationPath;
 		}
 
 		/// <summary>
-		/// Deletes all files in temporary directory except for the exceptions specified.
+		/// Clears application storage except from specified exceptions.
 		/// </summary>
-		public void ClearTemp(string folder, params string[] exceptions)
+		public void ClearStorage(string storageDirectory, params string[] exceptions)
 		{
-			var dir = new DirectoryInfo(GetPathToFolder(folder));
+			var storageDirInfo = new DirectoryInfo(GetPath(storageDirectory));
 
-			if (!dir.Exists)
+			if (!storageDirInfo.Exists)
 			{
 				return;
 			}
 
-			foreach (var file in dir.GetFiles())
+			foreach (var file in storageDirInfo.GetFiles())
 			{
 				if (!exceptions.Contains(file.FullName))
 				{
