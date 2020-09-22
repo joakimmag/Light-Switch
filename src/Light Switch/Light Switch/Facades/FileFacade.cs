@@ -9,17 +9,14 @@ namespace LightSwitch.Facades
 		private readonly string _temp = Path.Combine(Path.GetTempPath(), "LightSwitch");
 
 		/// <summary>
-		/// Gets full path to directory.
+		/// Gets the directory info object.
 		/// </summary>
-		private string GetPath(string directory)
-		{
-			return Path.Combine(_temp, directory);
-		}
+		private DirectoryInfo GetDirectory(string directoryName) => new DirectoryInfo(Path.Combine(_temp, directoryName));
 
 		/// <summary>
 		/// Generates a file name for use in application storage.
 		/// </summary>
-		private string GetFilename()
+		private string GetNewFilename()
 		{
 			var dt = new DateTime(2020, 01, 01);
 			var now = DateTime.UtcNow;
@@ -40,19 +37,19 @@ namespace LightSwitch.Facades
 				return sourcePath;
 			}
 
-			var storageDirInfo = new DirectoryInfo(GetPath(storageDirectory));
+			var storage = GetDirectory(storageDirectory);
 
-			if (sourceFileInfo.DirectoryName == storageDirInfo.FullName)
+			if (sourceFileInfo.DirectoryName == storage.FullName)
 			{
 				return sourcePath;
 			}
 
-			if (!storageDirInfo.Exists)
+			if (!storage.Exists)
 			{
-				storageDirInfo.Create();
+				storage.Create();
 			}
 
-			var destinationPath = Path.Combine(storageDirInfo.FullName, GetFilename() + sourceFileInfo.Extension);
+			var destinationPath = Path.Combine(storage.FullName, GetNewFilename() + sourceFileInfo.Extension);
 
 			sourceFileInfo.CopyTo(destinationPath, true);
 
@@ -64,14 +61,14 @@ namespace LightSwitch.Facades
 		/// </summary>
 		public void ClearStorage(string storageDirectory, params string[] exceptions)
 		{
-			var storageDirInfo = new DirectoryInfo(GetPath(storageDirectory));
+			var storage = GetDirectory(storageDirectory);
 
-			if (!storageDirInfo.Exists)
+			if (!storage.Exists)
 			{
 				return;
 			}
 
-			foreach (var file in storageDirInfo.GetFiles())
+			foreach (var file in storage.GetFiles())
 			{
 				if (!exceptions.Contains(file.FullName))
 				{
