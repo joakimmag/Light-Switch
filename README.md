@@ -26,6 +26,6 @@ Set your preferences.
 
 ![Screenshot](Readme/Preferences.png)
 
-## Support and feedback
+## Contact
 
-To get support or send feedback, please use the issue tracker.
+Please use the issue tracker to report issues or send feedback.
