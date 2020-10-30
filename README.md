@@ -6,7 +6,7 @@
 
 Easily switch between light and dark theme in Windows 10.
 
-This application displays an icon in your system tray, which upon clicking it changes Windows theme and wallpaper.
+This application displays an icon in your system tray, which changes Windows theme and wallpaper when you click on it.
 
 ## Download
 
