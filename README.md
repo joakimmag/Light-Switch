@@ -28,4 +28,4 @@ Set your preferences.
 
 ## Contact
 
-Please use the issue tracker for this repository to report issues. You can also use the issue tracker to give feedback.
+Please use the issue tracker for this repository to report issues or give feedback.
