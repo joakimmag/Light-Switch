@@ -18,7 +18,7 @@ Click the icon once to switch from light to dark, or from dark to light.
 
 ![Screenshot](Readme/Screen.gif)
 
-Right-click the icon to open the menu.
+Right click the icon to open the menu.
 
 ![Screenshot](Readme/Context-Menu.png)
 
