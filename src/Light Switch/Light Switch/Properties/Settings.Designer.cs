@@ -50,12 +50,9 @@ namespace LightSwitch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsWallpaperEnabled {
             get {
-                return ((bool)(this["IsWallpaperEnabled"]));
             }
             set {
-                this["IsWallpaperEnabled"] = value;
             }
         }
         
@@ -86,24 +83,18 @@ namespace LightSwitch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsAppThemeEnabled {
             get {
-                return ((bool)(this["IsAppThemeEnabled"]));
             }
             set {
-                this["IsAppThemeEnabled"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool IsSystemThemeEnabled {
             get {
-                return ((bool)(this["IsSystemThemeEnabled"]));
             }
             set {
-                this["IsSystemThemeEnabled"] = value;
             }
         }
         
