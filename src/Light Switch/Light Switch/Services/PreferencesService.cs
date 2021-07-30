@@ -1,38 +1,38 @@
 ﻿using LightSwitch.Models;
 using LightSwitch.Properties;
 
-namespace LightSwitch.Facades
+namespace LightSwitch.Services
 {
-	class PreferencesFacade
+	class PreferencesService
 	{
-		public Preferences GetPreferences() => new Preferences
+		public static Preferences GetPreferences() => new()
 		{
-			AppThemeIsEnabled = Settings.Default.AppThemeIsEnabled,
 			CurrentTheme = Settings.Default.CurrentTheme,
 			DarkColor = Settings.Default.DarkColor,
 			DarkWallpaper = Settings.Default.DarkWallpaper,
+			IsAppThemeEnabled = Settings.Default.IsAppThemeEnabled,
+			IsSystemThemeEnabled = Settings.Default.IsSystemThemeEnabled,
+			IsWallpaperEnabled = Settings.Default.IsWallpaperEnabled,
 			LightColor = Settings.Default.LightColor,
 			LightWallpaper = Settings.Default.LightWallpaper,
-			SystemThemeIsEnabled = Settings.Default.SystemThemeIsEnabled,
-			WallpaperIsEnabled = Settings.Default.WallpaperIsEnabled,
 		};
 
-		public void SavePreferences(Preferences preferences)
+		public static void SavePreferences(Preferences preferences)
 		{
-			Settings.Default.AppThemeIsEnabled = preferences.AppThemeIsEnabled;
 			Settings.Default.CurrentTheme = preferences.CurrentTheme;
 			Settings.Default.DarkColor = preferences.DarkColor;
 			Settings.Default.DarkWallpaper = preferences.DarkWallpaper;
+			Settings.Default.IsAppThemeEnabled = preferences.IsAppThemeEnabled;
+			Settings.Default.IsSystemThemeEnabled = preferences.IsSystemThemeEnabled;
+			Settings.Default.IsWallpaperEnabled = preferences.IsWallpaperEnabled;
 			Settings.Default.LightColor = preferences.LightColor;
 			Settings.Default.LightWallpaper = preferences.LightWallpaper;
-			Settings.Default.SystemThemeIsEnabled = preferences.SystemThemeIsEnabled;
-			Settings.Default.WallpaperIsEnabled = preferences.WallpaperIsEnabled;
 			Settings.Default.Save();
 		}
 
-		public string GetCurrentTheme() => Settings.Default.CurrentTheme;
+		public static string GetCurrentTheme() => Settings.Default.CurrentTheme;
 
-		public void SaveCurrentTheme(string theme)
+		public static void SaveCurrentTheme(string theme)
 		{
 			Settings.Default.CurrentTheme = theme;
 			Settings.Default.Save();

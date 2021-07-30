@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace LightSwitch.Facades
+namespace LightSwitch.Services
 {
-	class WallpaperFacade
+	class WallpaperService
     {
         private readonly uint SPI_SETDESKWALLPAPER = 0x14;
         private readonly uint SPIF_UPDATEINIFILE = 0x01;

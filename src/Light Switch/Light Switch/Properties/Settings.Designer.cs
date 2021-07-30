@@ -12,7 +12,7 @@ namespace LightSwitch.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -50,12 +50,12 @@ namespace LightSwitch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool WallpaperIsEnabled {
+        public bool IsWallpaperEnabled {
             get {
-                return ((bool)(this["WallpaperIsEnabled"]));
+                return ((bool)(this["IsWallpaperEnabled"]));
             }
             set {
-                this["WallpaperIsEnabled"] = value;
+                this["IsWallpaperEnabled"] = value;
             }
         }
         
@@ -86,24 +86,24 @@ namespace LightSwitch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool AppThemeIsEnabled {
+        public bool IsAppThemeEnabled {
             get {
-                return ((bool)(this["AppThemeIsEnabled"]));
+                return ((bool)(this["IsAppThemeEnabled"]));
             }
             set {
-                this["AppThemeIsEnabled"] = value;
+                this["IsAppThemeEnabled"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool SystemThemeIsEnabled {
+        public bool IsSystemThemeEnabled {
             get {
-                return ((bool)(this["SystemThemeIsEnabled"]));
+                return ((bool)(this["IsSystemThemeEnabled"]));
             }
             set {
-                this["SystemThemeIsEnabled"] = value;
+                this["IsSystemThemeEnabled"] = value;
             }
         }
         

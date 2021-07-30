@@ -1,4 +1,4 @@
-﻿using LightSwitch.Facades;
+﻿using LightSwitch.Services;
 using LightSwitch.Forms;
 using System;
 using System.Windows.Forms;
@@ -8,8 +8,8 @@ namespace LightSwitch
 	class AppContext : ApplicationContext
 	{
 		private readonly NotifyIcon _notifyIcon = new NotifyIcon();
-		private readonly ThemeFacade _themeFacade = new ThemeFacade();
-		private readonly PreferencesFacade _preferencesFacade = new PreferencesFacade();
+		private readonly ThemeService _themeService = new ThemeService();
+		private readonly PreferencesService _preferencesService = new PreferencesService();
 
 		public AppContext()
 		{
@@ -22,12 +22,12 @@ namespace LightSwitch
 			contextMenuStrip.Items.Add(new ToolStripMenuItem("Exit", null, OnExitClick));
 			
 			_notifyIcon.ContextMenuStrip = contextMenuStrip;
-			_notifyIcon.Icon = _preferencesFacade.GetCurrentTheme() == "Dark" ? Resources.Icon : Resources.Icon_Flipped;
+			_notifyIcon.Icon = PreferencesService.GetCurrentTheme() == "Dark" ? Resources.Icon : Resources.Icon_Flipped;
 			_notifyIcon.Text = "Light Switch";
 			_notifyIcon.Visible = true;
 			_notifyIcon.MouseClick += OnNotifyIconClick;
 
-			_themeFacade.NotifyIcon = _notifyIcon;
+			_themeService.NotifyIcon = _notifyIcon;
 		}
 
 		private void OnPreferencesClick(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace LightSwitch
 			var result = preferencesForm.ShowDialog();
 			if (result == DialogResult.OK)
 			{
-				_themeFacade.Reload();
+				_themeService.Reload();
 			}
 		}
 
@@ -54,7 +54,7 @@ namespace LightSwitch
 		{
 			if (e.Button == MouseButtons.Left)
 			{
-				_themeFacade.Switch();
+				_themeService.Switch();
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-﻿using LightSwitch.Facades;
+﻿using LightSwitch.Services;
 using LightSwitch.Models;
 using System;
 using System.Diagnostics;
@@ -10,8 +10,7 @@ namespace LightSwitch.Forms
 {
 	public partial class PreferencesForm : Form
 	{
-		private FileFacade _fileFacade = new FileFacade();
-		private PreferencesFacade _preferencesFacade = new PreferencesFacade();
+		private FileService _fileFacade = new();
 
 		private Preferences Preferences { get; set; }
 
@@ -24,12 +23,12 @@ namespace LightSwitch.Forms
 		{
 			lblVersion.Text = Application.ProductVersion;
 
-			Preferences = _preferencesFacade.GetPreferences();
+			Preferences = PreferencesService.GetPreferences();
 
-			rbnSystemEnabled.Checked = Preferences.SystemThemeIsEnabled;
-			rbnSystemDisabled.Checked = !Preferences.SystemThemeIsEnabled;
-			rbnAppEnabled.Checked = Preferences.AppThemeIsEnabled;
-			rbnAppDisabled.Checked = !Preferences.AppThemeIsEnabled;
+			rbnSystemEnabled.Checked = Preferences.IsSystemThemeEnabled;
+			rbnSystemDisabled.Checked = !Preferences.IsSystemThemeEnabled;
+			rbnAppEnabled.Checked = Preferences.IsAppThemeEnabled;
+			rbnAppDisabled.Checked = !Preferences.IsAppThemeEnabled;
 
 			if (File.Exists(Preferences.LightWallpaper))
 			{
@@ -49,7 +48,7 @@ namespace LightSwitch.Forms
 				pbxDark.BackColor = Color.FromArgb(Preferences.DarkColor);
 			}
 
-			if (Preferences.WallpaperIsEnabled)
+			if (Preferences.IsWallpaperEnabled)
 			{
 				rbnWallpaperIsEnabled.Checked = true;
 			}
@@ -79,24 +78,24 @@ namespace LightSwitch.Forms
 
 		private void rbnSystemEnabled_CheckedChanged(object sender, EventArgs e)
 		{
-			Preferences.SystemThemeIsEnabled = (sender as RadioButton).Checked;
+			Preferences.IsSystemThemeEnabled = (sender as RadioButton).Checked;
 		}
 
 		private void rbnAppEnabled_CheckedChanged(object sender, EventArgs e)
 		{
-			Preferences.AppThemeIsEnabled = (sender as RadioButton).Checked;
+			Preferences.IsAppThemeEnabled = (sender as RadioButton).Checked;
 		}
 
 		private void rbnWallpaperIsEnabled_CheckedChanged(object sender, EventArgs e)
 		{
 			if ((sender as RadioButton).Checked)
 			{
-				Preferences.WallpaperIsEnabled = true;
+				Preferences.IsWallpaperEnabled = true;
 				EnableWallpaperControls();
 			}
 			else
 			{
-				Preferences.WallpaperIsEnabled = false;
+				Preferences.IsWallpaperEnabled = false;
 				DisableWallpaperControls();
 			}
 		}
@@ -171,7 +170,7 @@ namespace LightSwitch.Forms
 			pbxDark.Dispose();
 
 			_fileFacade.ClearStorage("Wallpapers", Preferences.LightWallpaper, Preferences.DarkWallpaper);
-			_preferencesFacade.SavePreferences(Preferences);
+			PreferencesService.SavePreferences(Preferences);
 			DialogResult = DialogResult.OK;
 			Close();
 		}

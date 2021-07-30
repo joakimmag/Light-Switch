@@ -2,21 +2,24 @@
 using System.IO;
 using System.Linq;
 
-namespace LightSwitch.Facades
+namespace LightSwitch.Services
 {
-	class FileFacade
+	class FileService
 	{
+		/// <summary>
+		/// Path to LightSwitch storage in current user's temp folder.
+		/// </summary>
 		private readonly string _temp = Path.Combine(Path.GetTempPath(), "LightSwitch");
 
 		/// <summary>
 		/// Gets the directory info object.
 		/// </summary>
-		private DirectoryInfo GetDirectory(string directoryName) => new DirectoryInfo(Path.Combine(_temp, directoryName));
+		private DirectoryInfo GetDirectory(string directoryName) => new(Path.Combine(_temp, directoryName));
 
 		/// <summary>
 		/// Generates a file name for use in application storage.
 		/// </summary>
-		private string GetNewFilename()
+		private static string GetNewFilename()
 		{
 			var dt = new DateTime(2020, 01, 01);
 			var now = DateTime.UtcNow;
@@ -25,9 +28,9 @@ namespace LightSwitch.Facades
 		}
 
 		/// <summary>
-		/// Copies the file to application storage.
+		/// Copies the file to storage.
 		/// </summary>
-		/// <returns>Returns path to file in application storage. Returns source path if the source path does not exist.</returns>
+		/// <returns>Returns path to file in storage. Returns source path if the source path does not exist.</returns>
 		public string CopyToStorage(string storageDirectory, string sourcePath)
 		{
 			var sourceFileInfo = new FileInfo(sourcePath);
