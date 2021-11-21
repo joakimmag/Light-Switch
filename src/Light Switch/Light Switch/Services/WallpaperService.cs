@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace LightSwitch.Services
 {
-	class WallpaperService
+	internal class WallpaperService
     {
         private readonly uint SPI_SETDESKWALLPAPER = 0x14;
         private readonly uint SPIF_UPDATEINIFILE = 0x01;

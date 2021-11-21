@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace LightSwitch.Services
 {
-	class ThemeService
+	internal class ThemeService
 	{
-		private readonly WallpaperService _wallpaperService = new();
+		private WallpaperService WallpaperService { get; } = new();
 
 		public NotifyIcon NotifyIcon { get; set; }
 
@@ -16,7 +16,7 @@ namespace LightSwitch.Services
 		/// </summary>
 		public void Switch()
 		{
-			if (PreferencesService.GetCurrentTheme() == "Light")
+			if (PreferencesService.GetCurrentTheme() == Theme.Light)
 			{
 				SetDark();
 			}
@@ -31,7 +31,7 @@ namespace LightSwitch.Services
 		/// </summary>
 		public void Reload()
 		{
-			if (PreferencesService.GetCurrentTheme() == "Light")
+			if (PreferencesService.GetCurrentTheme() == Theme.Light)
 			{
 				SetLight();
 			}
@@ -43,7 +43,7 @@ namespace LightSwitch.Services
 
 		private void SetLight()
 		{
-			NotifyIcon.Icon = Resources.Icon_Flipped;
+			NotifyIcon.Icon = Resources.Icon_LightMode;
 
 			var preferences = PreferencesService.GetPreferences();
 
@@ -51,22 +51,22 @@ namespace LightSwitch.Services
 			if (preferences.IsSystemThemeEnabled) SetSystemTheme(true);
 			if (preferences.IsWallpaperEnabled)
 			{
-				if (File.Exists(preferences.LightWallpaper))
+				if (File.Exists(preferences.LightWallpaperPath))
 				{
-					_wallpaperService.SetImage(preferences.LightWallpaper);
+					WallpaperService.SetImage(preferences.LightWallpaperPath);
 				}
 				else
 				{
-					_wallpaperService.SetColor(Color.FromArgb(preferences.LightColor));
+					WallpaperService.SetColor(Color.FromArgb(preferences.LightColor));
 				}
 			}
 
-			PreferencesService.SaveCurrentTheme("Light");
+			PreferencesService.SaveCurrentThemeName("Light");
 		}
 
 		private void SetDark()
 		{
-			NotifyIcon.Icon = Resources.Icon;
+			NotifyIcon.Icon = Resources.Icon_DarkMode;
 
 			var preferences = PreferencesService.GetPreferences();
 
@@ -74,17 +74,17 @@ namespace LightSwitch.Services
 			if (preferences.IsSystemThemeEnabled) SetSystemTheme(false);
 			if (preferences.IsWallpaperEnabled)
 			{
-				if (File.Exists(preferences.DarkWallpaper))
+				if (File.Exists(preferences.DarkWallpaperPath))
 				{
-					_wallpaperService.SetImage(preferences.DarkWallpaper);
+					WallpaperService.SetImage(preferences.DarkWallpaperPath);
 				}
 				else
 				{
-					_wallpaperService.SetColor(Color.FromArgb(preferences.DarkColor));
+					WallpaperService.SetColor(Color.FromArgb(preferences.DarkColor));
 				}
 			}
 
-			PreferencesService.SaveCurrentTheme("Dark");
+			PreferencesService.SaveCurrentThemeName("Dark");
 		}
 
 		private static void SetAppTheme(bool light) => PersonalizeKey.SetValue("AppsUseLightTheme", light ? 1 : 0, RegistryValueKind.DWord);

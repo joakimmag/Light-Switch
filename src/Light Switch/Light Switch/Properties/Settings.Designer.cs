@@ -12,7 +12,7 @@ namespace LightSwitch.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.3.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,24 +26,24 @@ namespace LightSwitch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LightWallpaper {
+        public string LightWallpaperPath {
             get {
-                return ((string)(this["LightWallpaper"]));
+                return ((string)(this["LightWallpaperPath"]));
             }
             set {
-                this["LightWallpaper"] = value;
+                this["LightWallpaperPath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DarkWallpaper {
+        public string DarkWallpaperPath {
             get {
-                return ((string)(this["DarkWallpaper"]));
+                return ((string)(this["DarkWallpaperPath"]));
             }
             set {
-                this["DarkWallpaper"] = value;
+                this["DarkWallpaperPath"] = value;
             }
         }
         
@@ -110,12 +110,12 @@ namespace LightSwitch.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Dark")]
-        public string CurrentTheme {
+        public string CurrentThemeName {
             get {
-                return ((string)(this["CurrentTheme"]));
+                return ((string)(this["CurrentThemeName"]));
             }
             set {
-                this["CurrentTheme"] = value;
+                this["CurrentThemeName"] = value;
             }
         }
     }

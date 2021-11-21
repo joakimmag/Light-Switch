@@ -309,7 +309,7 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Image = global::LightSwitch.Resources.Logo;
 			this.pictureBox1.Location = new System.Drawing.Point(378, 14);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(50, 54);
@@ -331,9 +331,9 @@
 			this.lblVersion.AutoSize = true;
 			this.lblVersion.Location = new System.Drawing.Point(434, 30);
 			this.lblVersion.Name = "lblVersion";
-			this.lblVersion.Size = new System.Drawing.Size(35, 17);
+			this.lblVersion.Size = new System.Drawing.Size(27, 17);
 			this.lblVersion.TabIndex = 10;
-			this.lblVersion.Text = "2.0.0";
+			this.lblVersion.Text = "#.#";
 			// 
 			// llbGitHub
 			// 

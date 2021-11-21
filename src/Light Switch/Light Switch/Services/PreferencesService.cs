@@ -3,38 +3,38 @@ using LightSwitch.Properties;
 
 namespace LightSwitch.Services
 {
-	class PreferencesService
+	internal class PreferencesService
 	{
 		public static Preferences GetPreferences() => new()
 		{
-			CurrentTheme = Settings.Default.CurrentTheme,
+			CurrentThemeName = Settings.Default.CurrentThemeName,
 			DarkColor = Settings.Default.DarkColor,
-			DarkWallpaper = Settings.Default.DarkWallpaper,
+			DarkWallpaperPath = Settings.Default.DarkWallpaperPath,
 			IsAppThemeEnabled = Settings.Default.IsAppThemeEnabled,
 			IsSystemThemeEnabled = Settings.Default.IsSystemThemeEnabled,
 			IsWallpaperEnabled = Settings.Default.IsWallpaperEnabled,
 			LightColor = Settings.Default.LightColor,
-			LightWallpaper = Settings.Default.LightWallpaper,
+			LightWallpaperPath = Settings.Default.LightWallpaperPath,
 		};
 
 		public static void SavePreferences(Preferences preferences)
 		{
-			Settings.Default.CurrentTheme = preferences.CurrentTheme;
+			Settings.Default.CurrentThemeName = preferences.CurrentThemeName;
 			Settings.Default.DarkColor = preferences.DarkColor;
-			Settings.Default.DarkWallpaper = preferences.DarkWallpaper;
+			Settings.Default.DarkWallpaperPath = preferences.DarkWallpaperPath;
 			Settings.Default.IsAppThemeEnabled = preferences.IsAppThemeEnabled;
 			Settings.Default.IsSystemThemeEnabled = preferences.IsSystemThemeEnabled;
 			Settings.Default.IsWallpaperEnabled = preferences.IsWallpaperEnabled;
 			Settings.Default.LightColor = preferences.LightColor;
-			Settings.Default.LightWallpaper = preferences.LightWallpaper;
+			Settings.Default.LightWallpaperPath = preferences.LightWallpaperPath;
 			Settings.Default.Save();
 		}
 
-		public static string GetCurrentTheme() => Settings.Default.CurrentTheme;
+		public static Theme GetCurrentTheme() => Settings.Default.CurrentThemeName;
 
-		public static void SaveCurrentTheme(string theme)
+		public static void SaveCurrentThemeName(Theme theme)
 		{
-			Settings.Default.CurrentTheme = theme;
+			Settings.Default.CurrentThemeName = theme.Name;
 			Settings.Default.Save();
 		}
 	}

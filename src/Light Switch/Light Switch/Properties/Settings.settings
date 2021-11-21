@@ -2,10 +2,10 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LightSwitch.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="LightWallpaper" Type="System.String" Scope="User">
+    <Setting Name="LightWallpaperPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DarkWallpaper" Type="System.String" Scope="User">
+    <Setting Name="DarkWallpaperPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="IsWallpaperEnabled" Type="System.Boolean" Scope="User">
@@ -23,7 +23,7 @@
     <Setting Name="IsSystemThemeEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="CurrentTheme" Type="System.String" Scope="User">
+    <Setting Name="CurrentThemeName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Dark</Value>
     </Setting>
   </Settings>

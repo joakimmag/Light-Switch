@@ -10,9 +10,8 @@ namespace LightSwitch.Forms
 {
 	public partial class PreferencesForm : Form
 	{
-		private FileService _fileFacade = new();
-
-		private Preferences Preferences { get; set; }
+		private Preferences OldPreferences { get; set; }
+		private Preferences NewPreferences { get; set; }
 
 		public PreferencesForm()
 		{
@@ -21,34 +20,35 @@ namespace LightSwitch.Forms
 
 		private void PreferencesForm_Load(object sender, EventArgs e)
 		{
+			OldPreferences = PreferencesService.GetPreferences();
+			NewPreferences = OldPreferences;
+
 			lblVersion.Text = Application.ProductVersion;
 
-			Preferences = PreferencesService.GetPreferences();
+			rbnSystemEnabled.Checked = OldPreferences.IsSystemThemeEnabled;
+			rbnSystemDisabled.Checked = !OldPreferences.IsSystemThemeEnabled;
+			rbnAppEnabled.Checked = OldPreferences.IsAppThemeEnabled;
+			rbnAppDisabled.Checked = !OldPreferences.IsAppThemeEnabled;
 
-			rbnSystemEnabled.Checked = Preferences.IsSystemThemeEnabled;
-			rbnSystemDisabled.Checked = !Preferences.IsSystemThemeEnabled;
-			rbnAppEnabled.Checked = Preferences.IsAppThemeEnabled;
-			rbnAppDisabled.Checked = !Preferences.IsAppThemeEnabled;
-
-			if (File.Exists(Preferences.LightWallpaper))
+			if (File.Exists(OldPreferences.LightWallpaperPath))
 			{
-				pbxLight.Load(Preferences.LightWallpaper);
+				pbxLight.Load(OldPreferences.LightWallpaperPath);
 			}
 			else
 			{
-				pbxLight.BackColor = Color.FromArgb(Preferences.LightColor);
+				pbxLight.BackColor = Color.FromArgb(OldPreferences.LightColor);
 			}
 
-			if (File.Exists(Preferences.DarkWallpaper))
+			if (File.Exists(OldPreferences.DarkWallpaperPath))
 			{
-				pbxDark.Load(Preferences.DarkWallpaper);
+				pbxDark.Load(OldPreferences.DarkWallpaperPath);
 			}
 			else
 			{
-				pbxDark.BackColor = Color.FromArgb(Preferences.DarkColor);
+				pbxDark.BackColor = Color.FromArgb(OldPreferences.DarkColor);
 			}
 
-			if (Preferences.IsWallpaperEnabled)
+			if (OldPreferences.IsWallpaperEnabled)
 			{
 				rbnWallpaperIsEnabled.Checked = true;
 			}
@@ -78,34 +78,33 @@ namespace LightSwitch.Forms
 
 		private void rbnSystemEnabled_CheckedChanged(object sender, EventArgs e)
 		{
-			Preferences.IsSystemThemeEnabled = (sender as RadioButton).Checked;
+			NewPreferences.IsSystemThemeEnabled = (sender as RadioButton).Checked;
 		}
 
 		private void rbnAppEnabled_CheckedChanged(object sender, EventArgs e)
 		{
-			Preferences.IsAppThemeEnabled = (sender as RadioButton).Checked;
+			NewPreferences.IsAppThemeEnabled = (sender as RadioButton).Checked;
 		}
 
 		private void rbnWallpaperIsEnabled_CheckedChanged(object sender, EventArgs e)
 		{
 			if ((sender as RadioButton).Checked)
 			{
-				Preferences.IsWallpaperEnabled = true;
+				NewPreferences.IsWallpaperEnabled = true;
 				EnableWallpaperControls();
 			}
 			else
 			{
-				Preferences.IsWallpaperEnabled = false;
+				NewPreferences.IsWallpaperEnabled = false;
 				DisableWallpaperControls();
 			}
 		}
 
 		private void btnBrowseLight_Click(object sender, EventArgs e)
 		{
-			var result = dlgLight.ShowDialog();
-			if (result == DialogResult.OK)
+			if (dlgLight.ShowDialog() == DialogResult.OK)
 			{
-				Preferences.LightWallpaper = dlgLight.FileName;
+				NewPreferences.LightWallpaperPath = dlgLight.FileName;
 				pbxLight.BackColor = default;
 				pbxLight.Load(dlgLight.FileName);
 			}
@@ -113,10 +112,9 @@ namespace LightSwitch.Forms
 
 		private void btnBrowseDark_Click(object sender, EventArgs e)
 		{
-			var result = dlgDark.ShowDialog();
-			if (result == DialogResult.OK)
+			if (dlgDark.ShowDialog() == DialogResult.OK)
 			{
-				Preferences.DarkWallpaper = dlgDark.FileName;
+				NewPreferences.DarkWallpaperPath = dlgDark.FileName;
 				pbxDark.BackColor = default;
 				pbxDark.Load(dlgDark.FileName);
 			}
@@ -124,12 +122,11 @@ namespace LightSwitch.Forms
 
 		private void btnLightColor_Click(object sender, EventArgs e)
 		{
-			dlgColor.Color = Color.FromArgb(Preferences.LightColor);
-			var result = dlgColor.ShowDialog();
-			if (result == DialogResult.OK)
+			dlgColor.Color = Color.FromArgb(NewPreferences.LightColor);
+			if (dlgColor.ShowDialog() == DialogResult.OK)
 			{
-				Preferences.LightWallpaper = null;
-				Preferences.LightColor = dlgColor.Color.ToArgb();
+				NewPreferences.LightColor = dlgColor.Color.ToArgb();
+				NewPreferences.LightWallpaperPath = null;
 				pbxLight.BackColor = dlgColor.Color;
 				pbxLight.Image = null;
 			}
@@ -137,12 +134,11 @@ namespace LightSwitch.Forms
 
 		private void btnDarkColor_Click(object sender, EventArgs e)
 		{
-			dlgColor.Color = Color.FromArgb(Preferences.DarkColor);
-			var result = dlgColor.ShowDialog();
-			if (result == DialogResult.OK)
+			dlgColor.Color = Color.FromArgb(NewPreferences.DarkColor);
+			if (dlgColor.ShowDialog() == DialogResult.OK)
 			{
-				Preferences.DarkWallpaper = null;
-				Preferences.DarkColor = dlgColor.Color.ToArgb();
+				NewPreferences.DarkColor = dlgColor.Color.ToArgb();
+				NewPreferences.DarkWallpaperPath = null;
 				pbxDark.BackColor = dlgColor.Color;
 				pbxDark.Image = null;
 			}
@@ -156,21 +152,36 @@ namespace LightSwitch.Forms
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
-			if (!string.IsNullOrEmpty(Preferences.LightWallpaper))
+			FileInfo newLightWallpaperFile = null;
+			FileInfo newDarkWallpaperFile = null;
+
+			if (!string.IsNullOrEmpty(NewPreferences.LightWallpaperPath))
 			{
-				Preferences.LightWallpaper = _fileFacade.CopyToStorage("Wallpapers", Preferences.LightWallpaper);
+				var lightWallpaperFile = new FileInfo(NewPreferences.LightWallpaperPath);
+
+				if (Storage.Wallpapers.TryImport(lightWallpaperFile, out newLightWallpaperFile))
+				{
+					NewPreferences.LightWallpaperPath = newLightWallpaperFile.FullName;
+				}
 			}
 
-			if (!string.IsNullOrEmpty(Preferences.DarkWallpaper))
+			if (!string.IsNullOrEmpty(NewPreferences.DarkWallpaperPath))
 			{
-				Preferences.DarkWallpaper = _fileFacade.CopyToStorage("Wallpapers", Preferences.DarkWallpaper);
+				var darkWallpaperFile = new FileInfo(NewPreferences.DarkWallpaperPath);
+
+				if (Storage.Wallpapers.TryImport(darkWallpaperFile, out newDarkWallpaperFile))
+				{
+					NewPreferences.DarkWallpaperPath = newDarkWallpaperFile.FullName;
+				}
 			}
 
 			pbxLight.Dispose();
 			pbxDark.Dispose();
 
-			_fileFacade.ClearStorage("Wallpapers", Preferences.LightWallpaper, Preferences.DarkWallpaper);
-			PreferencesService.SavePreferences(Preferences);
+			Storage.Wallpapers.Clear(newLightWallpaperFile, newDarkWallpaperFile);
+
+			PreferencesService.SavePreferences(NewPreferences);
+
 			DialogResult = DialogResult.OK;
 			Close();
 		}

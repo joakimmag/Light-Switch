@@ -1,6 +1,6 @@
 ﻿# Light Switch
 
-![Icon](Readme/Icon.png)
+<img src="Readme/Logo.png" width="120" height="120">
 
 ## Description
 
@@ -26,6 +26,9 @@ Set your preferences.
 
 ![Screenshot](Readme/Preferences.png)
 
-## Contact
+## Release notes
 
-Please use the issue tracker to report issues or give feedback.
+- Version 2.2:
+  - New icon and new logo.
+  - Code refactoring.
+  - Some settings names have changed, some of your Preferences may become reset if you choose to install this version.
