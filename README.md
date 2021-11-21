@@ -4,7 +4,7 @@
 
 ## Description
 
-Easily switch between light and dark theme in Windows 10.
+Easily switch between light and dark theme in Windows 10 and 11.
 
 This application displays an icon in your system tray, which you can click to change Windows theme.
 
