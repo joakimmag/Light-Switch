@@ -31,4 +31,4 @@ Set your preferences.
 - Version 2.2:
   - New icon and new logo.
   - Code refactoring.
-  - Some settings names have changed, some of your Preferences may become reset if you choose to install this version.
+  - Some of your Preferences may become reset if you choose to install this version.
