@@ -5,7 +5,9 @@ using System.Windows.Forms;
 namespace LightSwitch.Forms
 {
 	/// <summary>
-	/// When you install a new version and the installer asks to close the running application, MainForm will handle close message from external sender. We only need to hide it.
+	/// MainForm's purpose is to handle close message from external sender.
+	/// For example, this is required when you install new version and the installer wants to close the running application.
+	/// This is handled automatically, we only need it to stay hidden.
 	/// </summary>
 	class MainForm : Form
 	{
