@@ -7,7 +7,7 @@ namespace LightSwitch.Forms
 	/// <summary>
 	/// MainForm's purpose is to handle close message from external sender.
 	/// For example, this is required when you install new version and the installer wants to close the running application.
-	/// This is handled automatically, we only need it to stay hidden.
+	/// This is handled automatically, we only need to hide the form.
 	/// </summary>
 	class MainForm : Form
 	{
