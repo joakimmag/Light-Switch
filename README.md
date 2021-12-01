@@ -1,12 +1,12 @@
-﻿# Light Switch
+# Light Switch
 
 <img src="Readme/Logo.png" width="120" height="120">
 
 ## Description
 
-Easily switch between light and dark theme in Windows 10 and 11.
+Easily switch from light to dark theme, or the other way around, in Windows 10 and Windows 11.
 
-This application displays an icon in your system tray, which you can click to change Windows theme.
+This application displays an icon in your system tray. You can click the icon to change Windows theme.
 
 ## Download
 
