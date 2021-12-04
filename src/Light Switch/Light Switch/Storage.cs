@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -15,6 +14,8 @@ namespace LightSwitch
 		/// <param name="name">The name of the storage.</param>
 		private Storage(string name) : base(name)
 		{
+			Directory = new(Path.Combine(BasePath, Name));
+
 			if (!Directory.Exists)
 			{
 				Directory.Create();
@@ -22,9 +23,15 @@ namespace LightSwitch
 		}
 
 		/// <summary>
-		/// Try to copy the file at <paramref name="fromPath"/> to this storage. Will not make duplicate.
+		/// Gets the directory info object.
 		/// </summary>
-		/// <param name="fromPath">The file to copy.</param>
+		public DirectoryInfo Directory { get; }
+
+		/// <summary>
+		/// Try to copy the file at <paramref name="fromFile"/> to this storage.
+		/// If <paramref name="fromFile"/> is this storage it will not make a copy and return true.
+		/// </summary>
+		/// <param name="fromFile">The file to copy.</param>
 		/// <param name="toFile">The new file.</param>
 		/// <returns>Returns true if successful.</returns>
 		public bool TryImport(FileInfo fromFile, out FileInfo toFile)
@@ -41,7 +48,7 @@ namespace LightSwitch
 				return true;
 			}
 
-			toFile = new FileInfo(Path.Combine(Directory.FullName, $"{GenerateUniqueString()}{fromFile.Extension}"));
+			toFile = new(Path.Combine(Directory.FullName, $"{GenerateUniqueString()}{fromFile.Extension}"));
 			fromFile.CopyTo(toFile.FullName, true);
 			return true;
 		}
@@ -93,14 +100,9 @@ namespace LightSwitch
 		public static readonly Storage Wallpapers = new(nameof(Wallpapers));
 
 		/// <summary>
-		/// Gets the directory info object.
-		/// </summary>
-		public DirectoryInfo Directory => new(Path.Combine(BasePath, Name));
-
-		/// <summary>
 		/// Path to LightSwitch storage in current user's temp folder.
 		/// </summary>
-		private static string BasePath => Path.Combine(Path.GetTempPath(), "LightSwitch");
+		private static string BasePath { get; } = Path.Combine(Path.GetTempPath(), "LightSwitch");
 
 		/// <summary>
 		/// Generates a unique string from current date and time.
