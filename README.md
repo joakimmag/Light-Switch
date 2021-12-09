@@ -6,7 +6,7 @@
 
 Easily switch from light to dark theme, or the other way around, in Windows 10 and Windows 11.
 
-This application displays an icon in your system tray. You can click the icon to change Windows theme.
+This application displays an icon in your system tray. Just click the icon to change Windows theme.
 
 ## Download
 
