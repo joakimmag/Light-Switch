@@ -8,6 +8,10 @@ Easily switch from light to dark theme, or the other way around, in Windows 10 a
 
 This application displays an icon in your system tray. Just click the icon to change Windows theme.
 
+### How it works
+
+It updates the values `AppsUseLightTheme` and `SystemUsesLightTheme` under the registry key `Software\Microsoft\Windows\CurrentVersion\Themes\Personalize`. Your Windows updates the same registry values when you change color settings under Settings > Personalization.
+
 ## Download
 
 Go to the [Releases](https://github.com/wireless-r/Light-Switch/releases) page to download the installer.
