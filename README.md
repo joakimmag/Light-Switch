@@ -10,7 +10,7 @@ This application displays an icon in your system tray. Just click the icon to ch
 
 ### How it works
 
-It updates the values `AppsUseLightTheme` and `SystemUsesLightTheme` under the registry key `Software\Microsoft\Windows\CurrentVersion\Themes\Personalize`. Your Windows updates the same registry values when you change color settings under Settings > Personalization.
+It updates the values `AppsUseLightTheme` and `SystemUsesLightTheme` under the registry key `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize`. Your Windows updates the same registry values when you change color settings under Settings > Personalization.
 
 ## Download
 
