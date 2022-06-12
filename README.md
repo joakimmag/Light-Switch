@@ -28,7 +28,7 @@ Set your preferences.
 
 ## How it works
 
-It updates the `AppsUseLightTheme` and `SystemUsesLightTheme` values under the `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize` registry key, which are the same values which are changed by Windows when you change color settings under Settings > Personalization.
+It updates the `AppsUseLightTheme` and `SystemUsesLightTheme` values under the `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize` registry key; Windows changes the same values when you change colors under Settings > Personalization.
 
 ## Release notes
 
