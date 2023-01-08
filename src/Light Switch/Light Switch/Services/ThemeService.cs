@@ -43,12 +43,14 @@ namespace LightSwitch.Services
 
 		private void SetLight()
 		{
-			NotifyIcon.Icon = Resources.Icon_LightMode;
-
 			var preferences = PreferencesService.GetPreferences();
 
 			if (preferences.IsAppThemeEnabled) SetAppTheme(true);
-			if (preferences.IsSystemThemeEnabled) SetSystemTheme(true);
+			if (preferences.IsSystemThemeEnabled)
+			{
+				SetSystemTheme(true);
+				NotifyIcon.Icon = Resources.Icon_LightMode;
+			}
 			if (preferences.IsWallpaperEnabled)
 			{
 				if (File.Exists(preferences.LightWallpaperPath))
@@ -66,12 +68,14 @@ namespace LightSwitch.Services
 
 		private void SetDark()
 		{
-			NotifyIcon.Icon = Resources.Icon_DarkMode;
-
 			var preferences = PreferencesService.GetPreferences();
 
 			if (preferences.IsAppThemeEnabled) SetAppTheme(false);
-			if (preferences.IsSystemThemeEnabled) SetSystemTheme(false);
+			if (preferences.IsSystemThemeEnabled)
+			{
+				SetSystemTheme(false);
+				NotifyIcon.Icon = Resources.Icon_DarkMode;
+			}
 			if (preferences.IsWallpaperEnabled)
 			{
 				if (File.Exists(preferences.DarkWallpaperPath))

@@ -97,12 +97,12 @@ namespace LightSwitch
 			_ => null,
 		};
 
-		public static readonly Storage Wallpapers = new(nameof(Wallpapers));
-
 		/// <summary>
 		/// Path to LightSwitch storage in current user's temp folder.
 		/// </summary>
 		private static string BasePath { get; } = Path.Combine(Path.GetTempPath(), "LightSwitch");
+
+		public static readonly Storage Wallpapers = new(nameof(Wallpapers));
 
 		/// <summary>
 		/// Generates a unique string from current date and time.
