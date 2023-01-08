@@ -49,8 +49,8 @@ namespace LightSwitch.Services
 			if (preferences.IsSystemThemeEnabled)
 			{
 				SetSystemTheme(true);
-                NotifyIcon.Icon = Resources.Icon_LightMode;
-            }
+				NotifyIcon.Icon = Resources.Icon_LightMode;
+			}
 			if (preferences.IsWallpaperEnabled)
 			{
 				if (File.Exists(preferences.LightWallpaperPath))
@@ -74,8 +74,8 @@ namespace LightSwitch.Services
 			if (preferences.IsSystemThemeEnabled)
 			{
 				SetSystemTheme(false);
-                NotifyIcon.Icon = Resources.Icon_DarkMode;
-            }
+				NotifyIcon.Icon = Resources.Icon_DarkMode;
+			}
 			if (preferences.IsWallpaperEnabled)
 			{
 				if (File.Exists(preferences.DarkWallpaperPath))
