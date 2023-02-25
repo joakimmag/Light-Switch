@@ -9,7 +9,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
     <RootNamespace>LightSwitch</RootNamespace>
     <AssemblyName>Light Switch</AssemblyName>
-    <Version>2.2</Version>
+    <Version>2.3</Version>
     <Product>Light Switch</Product>
     <Authors>Light Switch</Authors>
     <PackageId>LightSwitch</PackageId>
